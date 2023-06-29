@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+    env_file:
+      - .env
+  web:
+    build: .
+    # tmp/pids/server.pidが残ってたら `A server is already running. ~~` のエラーでrailsを起動できないので事前に消してから、`rails sever` する
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # 上記のdbイメージで指定したユーザー名とパスワードをrails側でも指定するため環境変数に設定。
+    env_file:
+      - .env
+    # ホストのカレントディレクトリ(.)とイメージ内の/imazuruディレクトリを同期させている
+    volumes:
+      - .:/imazuru
+    ports:
+      - "3000:3000"
+    restart: always # コンテナが停止すると常に再起動
+    tty: true # 疑似ターミナル (pseudo-TTY) を割り当て。https://docs.docker.jp/compose/compose-file/index.html#tty
+    stdin_open: true # サービス コンテナに標準入力を割り当てて実行するよう設定(https://docs.docker.jp/compose/compose-file/index.html#stdin-open)。
+    depends_on:
+      - db
+volumes:
+  mysql_volume:
