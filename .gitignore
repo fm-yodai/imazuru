@@ -32,3 +32,7 @@
 
 # Ignore the file setting environment variables.
 /.env
+
+# Ignore IDE setting file
+/.idea
+/.vscode
