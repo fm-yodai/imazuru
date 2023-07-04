@@ -5,4 +5,5 @@ WORKDIR /imazuru
 COPY Gemfile /imazuru/Gemfile
 COPY Gemfile.lock /imazuru/Gemfile.lock
 RUN bundle install
+RUN git config --global --add safe.directory /imazuru
 COPY . /imazuru
