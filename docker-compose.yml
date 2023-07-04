@@ -6,6 +6,8 @@ services:
       - ./tmp/db:/var/lib/mysql
     env_file:
       - .env
+    ports:
+      - 3306:3306
   web:
     build: .
     # tmp/pids/server.pidが残ってたら `A server is already running. ~~` のエラーでrailsを起動できないので事前に消してから、`rails sever` する
