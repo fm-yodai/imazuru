@@ -10,12 +10,16 @@
   </head>
 
   <body>
+  <div class="p-2 bg-success d-flex align-items-center gap-1">
     <% if user_signed_in? %>
-      <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <div>
+        <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-light" %>
+      </div>
     <% else %>
-      <%= button_to 'ログイン', new_user_session_path %>
-      <%= button_to '新規登録', new_user_registration_path %>
+      <div class=""><%= button_to 'ログイン', new_user_session_path, class: "btn btn-light", method: :get %></div>
+      <div><%= button_to '新規登録', new_user_registration_path, class: "btn btn-light", method: :get %></div>
     <% end %>
+  </div>
     <%= yield %>
   </body>
 </html>
