@@ -1,0 +1,15 @@
+<div class="col-sm-6 mx-auto">
+  <div class="my-3 card-body">
+    <div class="text-center">新規投稿</div>
+    <hr class="mt-1 mb-0 w-25">
+      <%= form_with model: @field, url: fields_path, local: true do |f| %>
+        <%= render 'shared/error_messages', model: f.object %>
+        <div class="form-group">
+          <%= f.text_area :text_theme, required: true, class: "px-1 col-sm-12", rows: 3 %>
+        </div>
+        <div class="actions text-center">
+          <%= f.submit "投稿", class: "w-25 btn btn-sm bg-dark text-white" %>
+        </div>
+      <% end %>
+  </div>
+</div>
