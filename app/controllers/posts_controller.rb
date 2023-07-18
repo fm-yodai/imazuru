@@ -7,6 +7,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-
+    binding.pry
   end
 end
