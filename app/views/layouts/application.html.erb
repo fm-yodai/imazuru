@@ -15,6 +15,7 @@
       <div>
         <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-light" %>
       </div>
+      <div><%= button_to '新規投稿', new_post_path, class: "btn btn-light", method: :get %></div>
     <% else %>
       <div class=""><%= button_to 'ログイン', new_user_session_path, class: "btn btn-light", method: :get %></div>
       <div><%= button_to '新規登録', new_user_registration_path, class: "btn btn-light", method: :get %></div>
