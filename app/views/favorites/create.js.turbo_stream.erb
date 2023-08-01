@@ -1,7 +1,0 @@
-<turbo-stream action="replace" target=".like-button">
-  <template>
-    <%= button_to like_post_path(@post), method: :post, remote: true, data: { turbo_action: 'replace' }, class: "like-button" do %>
-      Like (<%= @post.likes.count %>)
-    <% end %>
-  </template>
-</turbo-stream>

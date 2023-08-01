@@ -4,7 +4,7 @@ class FavoritesController < ApplicationController
   def create
     @favorite = @post.favorites.create(user: current_user)
     respond_to do |format|
-      format.turbo_stream
+      format.js
     end
   end
 
@@ -12,7 +12,7 @@ class FavoritesController < ApplicationController
     @favorite = @post.favorites.find_by(user: current_user)
     @favorite.destroy
     respond_to do |format|
-      format.turbo_stream
+      format.js
     end
   end
 
