@@ -1,1 +1,1 @@
-document.getElementById("like-button-<%= @post.id %>").innerHTML = '<%= j(render "posts/unlike", post: @post) %>';
+document.getElementById("favorite-button-<%= @post.id %>").innerHTML = '<%= j(render partial: 'posts/favorite', locals: { post: @post}) %>';

@@ -2,6 +2,8 @@
   <div>
     <%= post.user.name %>
     <%= post.content %>
-    <%= button_to "♥", post_favorites_path(post), method: :post, remote: true, data: { turbo_action: 'replace' }, class: "like-button", id: "like-button-#{post.id}" %>
+    <div id="favorite-button-<%= post.id %>">
+      <%= render partial: 'posts/favorite', locals: { post: post} %>
+    </div>
   </div>
 <% end %>
