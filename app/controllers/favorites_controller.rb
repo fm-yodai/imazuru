@@ -3,19 +3,19 @@ class FavoritesController < ApplicationController
 
   def create
     @favorite = @post.favorites.create(user: current_user)
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to posts_path }
-    end
+    # respond_to do |format|
+    #   format.turbo_stream
+    #   format.html { redirect_to root_path }
+    # end
   end
 
   def destroy
     @favorite = @post.favorites.find_by(user: current_user)
     @favorite.destroy
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to posts_path }
-    end
+    # respond_to do |format|
+    #   format.turbo_stream
+    #   format.html { redirect_to root_path }
+    # end
   end
 
   private
