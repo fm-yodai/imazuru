@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @image_url = session[:image_url]
+    @posts = Post.order(created_at: :desc)
   end
   def new
     @post = Post.new
   end
   def create
-    generate_prompt_for_dalle(post_params[:content])
+    session[:image_url] = generate_dalle_image(post_params[:content])
     post = Post.new(post_params)
     post.save
     redirect_to root_path
@@ -17,7 +18,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content).merge(user: current_user)
   end
 
-  def generate_prompt_for_dalle(content)
+  def generate_dalle_image(content)
     client = OpenAI::Client.new
 
     prompt = <<~PROMPT
@@ -37,6 +38,12 @@ class PostsController < ApplicationController
             temperature: 0.7,
         })
 
-    response.dig("choices", 0, "message", "content")
+    text = response.dig("choices", 0, "message", "content")
+    new_text = text.sub(/^prompt:/, '').strip
+    
+    client = OpenAI::Client.new
+    response_dalle = client.images.generate(parameters: { prompt: new_text, size: "512x512" })
+
+    response.dig("data", 0, "url")
   end
 end
