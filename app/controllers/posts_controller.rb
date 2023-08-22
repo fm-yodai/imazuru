@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
 
   def index
-    @image_url = session[:image_url]
     @posts = Post.order(created_at: :desc)
   end
   def new
     @post = Post.new
   end
   def create
-    session[:image_url] = generate_dalle_image(post_params[:content])
+    image_url = generate_dalle_image(post_params[:content])
     post = Post.new(post_params)
+    post.image_url = image_url
     post.save
     redirect_to root_path
   end
