@@ -1,8 +1,9 @@
 <% @posts.each do |post| %>
-  <div>
-    <%= post.user.name %>
-    <%= post.content %>
-    <%= image_tag(post.image_url, style: "width: 100px;") %>
+  <div class="card">
+    <%= post.user.name %><br>
+    <%= post.content %><br>
+    <%= post.prompt %><br>
+    <%= image_tag(post.image_url, style: "width: 400px;") %>
     <div id="favorite-button-<%= post.id %>">
       <%= render partial: 'posts/favorite', locals: { post: post} %>
     </div>
