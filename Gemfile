@@ -51,6 +51,10 @@ gem "bootsnap", require: false
 gem "devise"
 gem "bootstrap"
 gem "sassc-rails"
+gem "pry-rails"
+gem "hotwire-rails"
+gem "jsbundling-rails"
+gem "ruby-openai"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

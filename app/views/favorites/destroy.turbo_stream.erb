@@ -1,0 +1,3 @@
+<turbo-stream action="replace" target="favorite-button-<%= @post.id %>">
+  <%= render partial: 'posts/favorite', locals: { post: @post} %>
+</turbo-stream>
